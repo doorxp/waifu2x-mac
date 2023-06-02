@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17156" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17156"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -36,15 +36,6 @@
                     <rect key="frame" x="18" y="54" width="59" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Noise" id="0s8-Sj-siQ">
-                        <font key="font" metaFont="system" size="22"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hUy-6O-6bf">
-                    <rect key="frame" x="20" y="20" width="57" height="26"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Scale" id="hZp-TT-QCq">
                         <font key="font" metaFont="system" size="22"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -127,28 +118,48 @@
                         <action selector="styleChanged:" target="c22-O7-iKe" id="dtb-4V-PIl"/>
                     </connections>
                 </button>
-                <button identifier="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h5D-dw-JYt">
-                    <rect key="frame" x="92" y="21" width="73" height="24"/>
+                <textField identifier="width" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RWO-sP-2Gy">
+                    <rect key="frame" x="60" y="20" width="96" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="radio" title="None" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="BNX-rt-QaC">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system" size="20"/>
-                    </buttonCell>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="1024" drawsBackground="YES" id="MiQ-Fs-lBU">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
                     <connections>
-                        <action selector="scaleChanged:" target="c22-O7-iKe" id="L2v-Nf-UbJ"/>
+                        <outlet property="delegate" destination="c22-O7-iKe" id="kAu-io-Nru"/>
                     </connections>
-                </button>
-                <button identifier="2x" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="54e-Sr-6Hd">
-                    <rect key="frame" x="177" y="21" width="48" height="24"/>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zD1-Hv-uRQ">
+                    <rect key="frame" x="15" y="23" width="44" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="radio" title="2x" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="oPd-kC-4tv">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system" size="20"/>
-                    </buttonCell>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Width:" id="GRQ-mY-Xo5">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vKU-je-QVn">
+                    <rect key="frame" x="164" y="23" width="48" height="16"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Height:" id="7uO-gd-oYR">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField identifier="height" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t7l-fj-98L">
+                    <rect key="frame" x="227" y="20" width="96" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="1024" drawsBackground="YES" id="vMM-IP-gIv">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
                     <connections>
-                        <action selector="scaleChanged:" target="c22-O7-iKe" id="WPg-sp-fSk"/>
+                        <outlet property="delegate" destination="c22-O7-iKe" id="sNd-HJ-aQ5"/>
                     </connections>
-                </button>
+                </textField>
             </subviews>
             <connections>
                 <outlet property="animeButton" destination="Kza-20-q7R" id="fTR-R1-OlZ"/>
@@ -158,8 +169,8 @@
                 <outlet property="noise3Button" destination="FRN-Of-KSh" id="FTq-Gt-eoX"/>
                 <outlet property="noiseNoneButton" destination="Sy3-dH-c43" id="bbf-M9-FY5"/>
                 <outlet property="photoButton" destination="44s-NA-XDN" id="Smc-CJ-oI8"/>
-                <outlet property="scale2xButton" destination="54e-Sr-6Hd" id="Blc-TM-HfP"/>
-                <outlet property="scaleNoneButton" destination="h5D-dw-JYt" id="nEh-cN-gwR"/>
+                <outlet property="tfHeigh" destination="t7l-fj-98L" id="vn3-m5-ixX"/>
+                <outlet property="tfWidth" destination="RWO-sP-2Gy" id="ci6-5B-cIZ"/>
             </connections>
             <point key="canvasLocation" x="78.5" y="85"/>
         </customView>

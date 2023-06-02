@@ -33,6 +33,7 @@ class MainWindowController: NSWindowController, NSToolbarItemValidation {
         saveBarItem.autovalidates = true
         toolbar.allowsUserCustomization = false
     }
+    
     func validateToolbarItem(_ item: NSToolbarItem) -> Bool {
         return item.isEnabled
     }
@@ -78,6 +79,24 @@ class MainWindowController: NSWindowController, NSToolbarItemValidation {
         let style = UserDefaults.standard.string(forKey: "style") ?? "anime"
         let noise = UserDefaults.standard.string(forKey: "noise") ?? "1"
         let scale = UserDefaults.standard.string(forKey: "scale") ?? "2x"
+        
+        var width =  UserDefaults.standard.integer(forKey: "width")
+        var height =  UserDefaults.standard.integer(forKey: "height")
+        
+        guard let rep = img.representations.first else {return}
+        
+        
+        let iwidth = Int(rep.size.width)
+        let iheight = Int(rep.size.height);
+        
+        if(width == 0) {
+            width = 1024
+        }
+        
+        if(height == 0) {
+            height = 1024
+        }
+        
         var modelName = style
         if noise != "none" {
             modelName += "_noise" + noise
@@ -89,9 +108,26 @@ class MainWindowController: NSWindowController, NSToolbarItemValidation {
         
         let start = Date()
         background.async {
-            guard let outImage = Waifu2x.run(img, model: Model(rawValue: modelName)!) else {
-                return
+            var time = 1;
+            var value = iwidth;
+            while(width>value) {
+                value = value * 2;
+                time += 1;
             }
+            
+            value = iheight * Int(powf(2, Float(time)));
+            while(height>value) {
+                value = value * 2;
+                time += 1;
+            }
+            
+            var outImage = img;
+            while(time > 1) {
+                guard let o = Waifu2x.run(outImage, model: Model(rawValue: modelName)!) else {return}
+                outImage = o;
+                time -= 1;
+            }
+            
             DispatchQueue.main.async {
                 self.windowContent.outImg.image = outImage
                 debugPrint("\(outImage.size)")

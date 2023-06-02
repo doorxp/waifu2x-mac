@@ -9,7 +9,7 @@
 import Foundation
 import AppKit
 
-class ConfigView: NSView {
+class ConfigView: NSView, NSTextFieldDelegate {
     
     @IBOutlet weak var animeButton: NSButton!
     @IBOutlet weak var photoButton: NSButton!
@@ -20,8 +20,11 @@ class ConfigView: NSView {
     @IBOutlet weak var noise2Button: NSButton!
     @IBOutlet weak var noise3Button: NSButton!
     
-    @IBOutlet weak var scaleNoneButton: NSButton!
-    @IBOutlet weak var scale2xButton: NSButton!
+//    @IBOutlet weak var scaleNoneButton: NSButton!
+//    @IBOutlet weak var scale2xButton: NSButton!
+    
+    @IBOutlet weak var tfWidth: NSTextField!
+    @IBOutlet weak var tfHeigh: NSTextField!
     
     override func viewDidMoveToWindow() {
         super.viewDidMoveToWindow()
@@ -42,11 +45,15 @@ class ConfigView: NSView {
         default:
             noise1Button.state = .on
         }
-        if UserDefaults.standard.string(forKey: "scale") ?? "2x" == "2x" {
-            scale2xButton.state = .on
-        } else {
-            scaleNoneButton.state = .on
-        }
+//        if UserDefaults.standard.string(forKey: "scale") ?? "2x" == "2x" {
+//            scale2xButton.state = .on
+//        } else {
+//            scaleNoneButton.state = .on
+//        }
+        
+        tfWidth.stringValue =  UserDefaults.standard.string(forKey: "width") ?? "1024"
+    
+        tfHeigh.stringValue = UserDefaults.standard.string(forKey: "height") ?? "1024"
     }
     
     @IBAction func styleChanged(_ sender: NSButton) {
@@ -69,11 +76,34 @@ class ConfigView: NSView {
             UserDefaults.standard.set("3", forKey: "noise")
         }
     }
-    @IBAction func scaleChanged(_ sender: NSButton) {
-        if sender == scaleNoneButton {
-            UserDefaults.standard.set("none", forKey: "scale")
-        } else if sender == scale2xButton {
-            UserDefaults.standard.set("2x", forKey: "scale")
+    
+    func controlTextDidChange(_ obj: Notification) {
+        guard let o = obj.object as? NSTextField else {
+            return;
         }
+        if(obj.object is NSTextField) {
+            
+        }
+        
+        if(Int(o.stringValue) != nil) {
+            if(o == tfHeigh) {
+                UserDefaults.standard.setValue(o.stringValue, forKey: "height")
+            }
+            else if (o == tfWidth) {
+                UserDefaults.standard.setValue(o.stringValue, forKey: "width")
+            }
+            
+        }
+        
+        UserDefaults.standard.synchronize()
     }
+    
+    
+//    @IBAction func scaleChanged(_ sender: NSButton) {
+//        if sender == scaleNoneButton {
+//            UserDefaults.standard.set("none", forKey: "scale")
+//        } else if sender == scale2xButton {
+//            UserDefaults.standard.set("2x", forKey: "scale")
+//        }
+//    }
 }
