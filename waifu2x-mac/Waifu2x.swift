@@ -52,7 +52,7 @@ public struct Waifu2x {
         let height = Int(image.representations[0].pixelsHigh)
         var fullWidth = width
         var fullHeight = height
-        guard var cgimg = image.representations[0].cgImage(forProposedRect: nil, context: nil, hints: nil) else {
+        guard let cgimg = image.representations[0].cgImage(forProposedRect: nil, context: nil, hints: nil) else {
             print("Failed to get CGImage")
             return nil
         }
